@@ -38,7 +38,7 @@ function App() {
   const debouncedSearch = useMemo(
     () =>
       debounce((value: string, setResults: (results: Data) => void) => {
-        const searched = (data as Data)
+        const searched = (data as unknown as Data)
           .filter(fuzzySearchTolgoiUg(value))
           .sort(sort(value)) // Pass value to sort
           .slice(0, 20);
@@ -49,7 +49,7 @@ function App() {
   );
 
   const [results, setResults] = useState<Data>(() => {
-    return (data as Data)
+    return (data as unknown as Data)
       .filter(fuzzySearchTolgoiUg(searchTerm))
       .sort(sort(searchTerm)) // Pass searchTerm to sort
       .slice(0, 20);
